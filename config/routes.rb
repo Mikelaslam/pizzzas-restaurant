@@ -1,21 +1,12 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # GET all restaurants
-  get '/restaurants', to: 'restaurants#index'
+  resources :pizzas, only: [:index]
 
-  # GET a specific restaurant and its associated pizzas
-  get '/restaurants/:id', to: 'restaurants#show'
+  resources :restaurants, only: [:index, :show, :destroy]
+  
+  resources :restaurant_pizzas, only: [:create]
 
-  # DELETE a specific restaurant and its associated restaurant_pizzas
-  delete '/restaurants/:id', to: 'restaurants#destroy'
 
-  # GET all pizzas
-  get '/pizzas', to: 'pizzas#index'
 
-  # POST a new restaurant_pizza
-  post '/restaurant_pizzas', to: 'restaurant_pizzas#create'
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
